@@ -47,7 +47,7 @@ class AuthController extends Controller
             ->with('carrera')
             ->with('carrera.facultad')
             ->with('prestamos')
-            ->findOrFail('6');
+            ->findOrFail($id);
         return response()->json($persona);
     }
     /**
