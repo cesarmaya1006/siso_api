@@ -39,14 +39,31 @@ class AuthController extends Controller
     public function persona($id)
     {
         $persona = Persona::with('tipos_docu')
-        ->with('usuario')
-        ->with('usuario.roles')
-        ->with('usuario.roles.carnets')
+            ->with('usuario')
+            ->with('usuario.roles')
+            ->with('usuario.roles.carnets')
             ->with('cargo')
             ->with('cargo.area')
             ->with('carrera')
             ->with('carrera.facultad')
             ->with('prestamos')
+            ->findOrFail($id);
+        return response()->json($persona);
+    }
+    public function prestamos($id)
+    {
+        $persona = Persona::with('tipos_docu')
+            ->with('usuario')
+            ->with('usuario.roles')
+            ->with('usuario.roles.carnets')
+            ->with('cargo')
+            ->with('cargo.area')
+            ->with('carrera')
+            ->with('carrera.facultad')
+            ->with('prestamos')
+            ->with('prestamos.usuario')
+            ->with('prestamos.producto')
+            ->with('prestamos.producto')
             ->findOrFail($id);
         return response()->json($persona);
     }
